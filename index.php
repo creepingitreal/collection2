@@ -1,14 +1,16 @@
 <?php
     require_once 'src/PlantModel.php';
+    require_once 'src/PlantsViewer.php';
 
     $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     $plantModel = new PlantModel($db);
+
     $plants = $plantModel->getAllPlants();
 
-    ECHO '<PRE>';
-    var_dump($plants);
+    $viewhelper = new PlantViewHelper();
+    echo $viewhelper->displaySinglePlant($plant);
 ?>
 <!-- 
 <!DOCTYPE html>

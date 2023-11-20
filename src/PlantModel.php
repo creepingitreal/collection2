@@ -19,5 +19,12 @@ class PlantModel
         return $plants;
     }
 
+    // public function getPlantsByFamily(int $family_id)
+    // {
+    //     $query = $this->db->prepare(
+
+    //     )
+    // }
+
     //addPlant
 }
