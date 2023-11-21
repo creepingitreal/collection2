@@ -12,8 +12,9 @@
 }
 
 .all_plants {
+    background-color: red;
     max-width: 800px;
     max-height: auto;
-    display: grid;
+    /* display: grid; */
     gap: 10%;
 }
