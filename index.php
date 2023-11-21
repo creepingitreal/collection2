@@ -9,10 +9,8 @@
 
     $plants = $plantModel->getAllPlants();
 
-    $viewhelper = new PlantViewHelper();
-    echo $viewhelper->displaySinglePlant($plant);
 ?>
-<!-- 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,15 +27,8 @@
         </header>
         <div class="plant_individual">
             <?php
-            //  foreach ($result as $plant) {
-            //     echo '<ul class="plant">';
-            //     echo "<li>{$plant['name']}</li>";
-            //     echo "<li>{$plant['scientific_name']}</li>";
-            //     echo "<li><img src='{$plant['image']}' /></li>";
-            //     echo "<li>{$plant['description']}</li>";
-            //     echo '</ul>';
-            //     }
+                echo PlantViewHelper::displaySinglePlant($plant);
              ?>
         </div>
     </body>
-</html> -->
+</html>
