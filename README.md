@@ -1,1 +1,1 @@
-# collection2
+# collection_app
