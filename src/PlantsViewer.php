@@ -1,32 +1,33 @@
 <?php
 
 require_once 'src/Plant.php';
+// <link rel="stylesheet" href="style.css">
 
 class PlantViewHelper
 {
     public static function displaySinglePlant (Plant $plant): string
     {
-        $output = '<div>';
+        $output = "<div class='individual_plants'>";
         $output .= "<h1>$plant->name</h1>";
-        $output .= "<p>$plant->scientificName</p>";
+        $output .= "<p>$plant->family</p>";
         $output .= "<img src='$plant->image' />";
         $output .= "<p class='description'>$plant->description</p>";
-        $output .= '</div>';
+        $output .= "</div>";
 
         return $output;
     }
 
-    public function displayAllPlants (array $plants): string
+    public static function displayAllPlants (array $plants): string
     {
         $output = '';
         
         foreach ($plants as $plant) {
-            $output = '<div>';
+            $output .= "<div class='all_plants'>";
             $output .= "<h1>$plant->name</h1>";
-            $output .= "<p>$plant->scientificName</p>";
+            $output .= "<p>$plant->family</p>";
             $output .= "<img src='$plant->image' />";
             $output .= "<p class='description'>$plant->description</p>";
-            $output .= '</div>';
+            $output .= "</div>";
         }
 
         return $output;

@@ -4,9 +4,16 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.plant_individual {
+.individual_plant {
     max-width: 800px;
     max-height: auto;
     
+    gap: 10%;
+}
+
+.all_plants {
+    max-width: 800px;
+    max-height: auto;
+    display: grid;
     gap: 10%;
 }

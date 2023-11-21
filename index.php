@@ -6,7 +6,7 @@
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     $plantModel = new PlantModel($db);
-
+    
     $plants = $plantModel->getAllPlants();
 
 ?>
@@ -25,10 +25,10 @@
         <header>
             
         </header>
-        <div class="plant_individual">
+        <div class="plants_display">
             <?php
-                echo PlantViewHelper::displaySinglePlant($plant);
-             ?>
+                echo PlantViewHelper::displayAllPlants($plants);
+            ?>
         </div>
     </body>
 </html>
