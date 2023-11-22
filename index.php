@@ -38,37 +38,74 @@
             ?>
         </div>
 
-        <form method="POST">
+        <form method="POST" class="add_plant">
+            <label for="newPlant">Plant Name</label>
             <input type="text" name="newPlant" />
-            <input type="submit" />
+
+            <select name="select_family">
+                <option value="">Plant Family</option>
+                <option value="Foliage Plants">Foliage Plants</option>
+                <option value="Succlents and Cacti">Succlents and Cacti</option>
+                <option value="Flowing Plants">Flowing Plants</option>
+                <option value="Trailing or Hanging Plants">Trailing or Hanging Plants</option>
+            </select>
+            <!-- <select name="add_image">
+                <option value="">Plant Family</option>
+                <option value="red">Upload</option>
+                <option value="green">Auto</option>
+            </select> -->
+
+            <input type="submit"/>
+                <?php
+                if (isset($_POST['newPlantName'])){
+
+                    {  
+                        $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
+                        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                
+                        $inputtedPlantName = $_POST['newPlantName']; 
+                        $inputtedPlantFamily = $_POST['newPlantFamily']; 
+
+                        $query = $db->prepare(
+                            'INSERT INTO `plant` 
+                                (`name`)
+                                VALUES (:name);'
+                            );
+                        
+                        $query->bindParam(':name', $inputtedPlantName);
+                        $query->bindParam(':last_name', $inputtedPlantFamily);
+
+                        $success = $query->execute();
+                        if ($success) {
+                            echo "$inputtedPlantName was added to the plant collection";
+                        } else { 
+                            echo "Sacrebleu! It did not work! Please ensure you completed all the";
+                        }
+                    }
+
+                        
+                
+                        $query = $db->prepare(
+                            'INSERT INTO `plant` 
+                                (`family`)
+                                VALUES (:family);'
+                            );
+                        
+                        
+                    
+                          if ($success) {
+                            echo "$inputtedPlantName was added to the plant collection";
+                        } else { 
+                            echo "Sacrebleu! It did not work! Please ensure you completed all the";
+                        }
+                    }
+                }
+                ?>
+
+
         </form>
     </body>
 </html>
 
 
 
-<?php
-// Check to make sure the form is submitted
-if (isset($_POST['newPlant'])) {
-    // If it is, connect to the database
-    $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-    // Get the value out of the form using $_POST
-    $inputtedPlant = $_POST['newPlant']; 
-
-    // prepare our insert query, passing the data from the form into the query
-    // WE NEVER put variables directly into a query - especially when they come from a user (form)
-    // Istead we create a placeholder :category
-    $query = $db->prepare("INSERT INTO `plant` (`name`) VALUE (:plant);");
-    // And we use bindParam to replace the placeholder with the real data, whilst making it safe automatically
-    $query->bindParam(':plant', $inputtedPlant);
-
-    $success = $query->execute(); // execute returns a bool to tell you if the query worked or not
-    // If execute returns true, display a success message
-    if ($success) {
-        echo "$inputtedPlant was inserted into the DB";
-    } else { // Display an error if excute failed for whatever reason
-        echo "Error, try again later!";
-    }
-} 

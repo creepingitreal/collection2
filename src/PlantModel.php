@@ -68,19 +68,28 @@ class PlantModel
         return $plantObj;
     }
 
-
-
-
-
-
-
-
-    // public function getPlantsByFamily(int $family_id)
-    // {
-    //     $query = $this->db->prepare(
-
-    //     )
-    // }
-
-    //addPlant
 }
+    public function addPlant()
+    function connectToDb(): PDO {
+        $db = new PDO('mysql:host=db; dbname=onlinestore', 'root', 'password');
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        return $db;
+    }
+    
+    function insertNewsletterSignup(PDO $db, string $firstname, string $lastname, string $email): bool {
+        $query = $db->prepare(
+            'INSERT INTO `newsletter` 
+                (`first_name`, `last_name`, `email`)
+                VALUES (:first_name, :last_name, :email);'
+            );
+        
+        $query->bindParam(':first_name', $firstname);
+        $query->bindParam(':last_name', $lastname);
+        $query->bindParam(':email', $email);
+    
+        // Run the query
+        $success = $query->execute();
+        return $success;
+    }
+}
+

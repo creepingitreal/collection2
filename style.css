@@ -81,3 +81,38 @@ header p{
     margin-top: 2%;
     font-weight: 600;
 }
+
+
+
+.slider_wrapper {
+    width: 500px;
+    margin: auto;
+}
+
+.slider_inner {
+    display: flex;
+    width: 100%;   
+}
+
+.slider_left {
+    flex: 0 0 10%;
+}
+
+.slider_right {
+    flex: 0 0 10%;
+}
+
+.slider_images {
+    flex: 0 0 80%;
+    display: flex;
+    transform: translate(-400px);
+}
+
+.slider_images img {
+    flex: 0 0 440px;
+    width: 400px;
+}
+
+.slider_container {
+    overflow: hidden;
+}
