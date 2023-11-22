@@ -68,24 +68,24 @@ class PlantModel
         return $plantObj;
     }
 
-    function addNewPlant(string $name, int $family_id) 
+    function addNewPlant(string $name, string $scientific_name, int $family_id, string $image, string $description) 
     {   
         $query = $this->db->prepare(
             'INSERT INTO `plant` 
-                (`name`, `family_id`)
-                VALUES (:name, :family_id);'
+                (`name`, `scientific_name`,`family_id`, `image`, `description`)
+                VALUES (:name, :scientific_name, :family_id, :image, :description);'
             );
         
         $query->bindParam(':name', $name);
+        $query->bindParam(':scientific_name', $scientific_name);
         $query->bindParam(':family_id', $family_id);
+        $query->bindParam(':image', $image);
+        $query->bindParam(':description', $description);
     
     
         $success = $query->execute();
+
+        return $success;
         
-        if ($success) {
-            echo "$name was added to the plant collection";
-        } else { 
-            echo "Sacrebleu! It did not work! Please ensure you completed all the";
-        }
-    }
+}
 }

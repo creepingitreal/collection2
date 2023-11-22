@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: rgb(44, 147, 78, 128);
+    /* display: flex; */
+}
+
+header {
+    padding-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1, header p {
+    font-family: 'Comfortaa', sans-serif;;
+    color: rgb(218, 238, 136);
+}
+
+header h1 {
+    font-size: 50px;
+    padding-bottom: 2.5%;
+    border-bottom: solid 2px rgb(218, 238, 136);
+}
+
+header p{
+    padding-top: 2.5%;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.PLANTBUTTON {
+    font-weight: 600;
+    font-size: 20px;
+    background-color: pink;
+    border: solid 3px;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 20px 20px;
+    margin-left: 70%;
+    margin-top: 60%;
+    transition: .2s;
+}
+.PLANTBUTTON:hover {
+    background-color: darkorchid;
+    color: yellow;
+
+}
+
+.add_plant {
+    margin: 3% auto;
+    display: grid;
+    gap: 3%;
+    align-content: space-evenly;
+    max-width: 50%;
+    background-color: rgb(193, 229, 206);
+    padding: 5% 3%;
+    border-radius: 4px;
+    border-bottom: solid 2px rgb(218, 238, 136);
+}
+
+
+.add_plant input {
+    border: none;
+    border-radius: 3px;
+    padding: 5px 0;
+}
+
+/* .add_plant {
+} */
+
+.add_plant .sumbitPlant{
+    margin-top: 3%;
+    max-width: 18%;
+    padding: 1% 2%;
+}
+
+.sumbit_success {
+    font-size: large;
+}
+
+.slider_wrapper {
+    width: 500px;
+    margin: auto;
+}
+
+.slider_inner {
+    display: flex;
+    width: 100%;   
+}
+
+.slider_left {
+    flex: 0 0 10%;
+}
+
+.slider_right {
+    flex: 0 0 10%;
+}
+
+.slider_images {
+    flex: 0 0 80%;
+    display: flex;
+    transform: translate(-400px);
+}
+
+.slider_images img {
+    flex: 0 0 440px;
+    width: 400px;
+}
+
+.slider_container {
+    overflow: hidden;
+}

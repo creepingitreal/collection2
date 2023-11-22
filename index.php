@@ -32,31 +32,14 @@
                 <p> Girl, pileas!</p>
             </div>
         </header>
+        
+        <a class="PLANTBUTTON" href="AddPlant.php">ADD NEW PLANT</a>
+
         <div class="plants_display">
             <?php
                 echo PlantViewHelper::displayAllPlants($plants);
             ?>
         </div>
-
-        <form method="POST" class="add_plant">
-            <label for="newPlant">Plant Name</label>
-            <input type="text" name="newPlant" />
-
-            <select name="select_family">
-                <option value="">Plant Family</option>
-                <option value="Foliage Plants">Foliage Plants</option>
-                <option value="Succlents and Cacti">Succlents and Cacti</option>
-                <option value="Flowing Plants">Flowing Plants</option>
-                <option value="Trailing or Hanging Plants">Trailing or Hanging Plants</option>
-            </select>
-            <!-- <select name="add_image">
-                <option value="">Plant Family</option>
-                <option value="red">Upload</option>
-                <option value="green">Auto</option>
-            </select> -->
-
-            <input type="submit"/>
-        </form>
     </body>
 </html>
 
