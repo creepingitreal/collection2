@@ -17,7 +17,8 @@
                 is_numeric($inputtedPlantName)) {
                     echo "Please select use valid characters for the plant name.";
                 }
-                if(strlen($inputtedPlantFamily)==0) {
+                if(intval($inputtedPlantFamily)==0 ||
+                intval($inputtedPlantFamily < 4)) {
                     echo "Please select a valid plant family.";
                 }
                 if(is_numeric($inputtedScientificName)) {
