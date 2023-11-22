@@ -56,53 +56,6 @@
             </select> -->
 
             <input type="submit"/>
-                <?php
-                if (isset($_POST['newPlantName'])){
-
-                    {  
-                        $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
-                        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-                
-                        $inputtedPlantName = $_POST['newPlantName']; 
-                        $inputtedPlantFamily = $_POST['newPlantFamily']; 
-
-                        $query = $db->prepare(
-                            'INSERT INTO `plant` 
-                                (`name`)
-                                VALUES (:name);'
-                            );
-                        
-                        $query->bindParam(':name', $inputtedPlantName);
-                        $query->bindParam(':last_name', $inputtedPlantFamily);
-
-                        $success = $query->execute();
-                        if ($success) {
-                            echo "$inputtedPlantName was added to the plant collection";
-                        } else { 
-                            echo "Sacrebleu! It did not work! Please ensure you completed all the";
-                        }
-                    }
-
-                        
-                
-                        $query = $db->prepare(
-                            'INSERT INTO `plant` 
-                                (`family`)
-                                VALUES (:family);'
-                            );
-                        
-                        
-                    
-                          if ($success) {
-                            echo "$inputtedPlantName was added to the plant collection";
-                        } else { 
-                            echo "Sacrebleu! It did not work! Please ensure you completed all the";
-                        }
-                    }
-                }
-                ?>
-
-
         </form>
     </body>
 </html>

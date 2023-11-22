@@ -68,28 +68,24 @@ class PlantModel
         return $plantObj;
     }
 
-}
-    public function addPlant()
-    function connectToDb(): PDO {
-        $db = new PDO('mysql:host=db; dbname=onlinestore', 'root', 'password');
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        return $db;
-    }
-    
-    function insertNewsletterSignup(PDO $db, string $firstname, string $lastname, string $email): bool {
-        $query = $db->prepare(
-            'INSERT INTO `newsletter` 
-                (`first_name`, `last_name`, `email`)
-                VALUES (:first_name, :last_name, :email);'
+    function addNewPlant(string $name, int $family_id) 
+    {   
+        $query = $this->db->prepare(
+            'INSERT INTO `plant` 
+                (`name`, `family_id`)
+                VALUES (:name, :family_id);'
             );
         
-        $query->bindParam(':first_name', $firstname);
-        $query->bindParam(':last_name', $lastname);
-        $query->bindParam(':email', $email);
+        $query->bindParam(':name', $name);
+        $query->bindParam(':family_id', $family_id);
     
-        // Run the query
+    
         $success = $query->execute();
-        return $success;
+        
+        if ($success) {
+            echo "$name was added to the plant collection";
+        } else { 
+            echo "Sacrebleu! It did not work! Please ensure you completed all the";
+        }
     }
 }
-
