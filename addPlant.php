@@ -5,48 +5,56 @@
                 isset($_POST['newPlantScientificName'])&&
                 isset($_POST['newPlantFamily'])&&
                 isset($_POST['newPlantImage'])&&
-                isset($_POST['newPlantDescription'])){
+                isset($_POST['newPlantDescription'])
+                )   {
+                        $inputtedPlantName = $_POST['newPlantName']; 
+                        $inputtedScientificName = $_POST['newPlantScientificName'];
+                        $inputtedPlantFamily = $_POST['newPlantFamily'];
+                        $inputtedImage = $_POST['newPlantImage'];
+                        $inputtedDescription = $_POST['newPlantDescription'];
+                        
+                        if(strlen($inputtedPlantName)==0 ||
+                        is_numeric($inputtedPlantName)
+                            ){
+                                echo "Please select use valid characters for the plant name.";
+                             }
+                        if(intval($inputtedPlantFamily)==0 ||
+                        intval($inputtedPlantFamily < 4)
+                            ){
+                                echo "Please select a valid plant family.";
+                             }
+                        if(is_numeric($inputtedScientificName) 
+                            ){
+                                echo "Please select use valid characters for the scientific name.";
+                             }
+                        if(strlen($inputtedImage)==0 || 
+                            filter_var($inputtedImage, FILTER_VALIDATE_URL) === FALSE) 
+                            {
+                                echo "Please enter a valid image URL.";
+                            }
+                        if(strlen($inputtedDescription)==0 ||
+                        strlen($inputtedDescription < 10) ||
+                        is_numeric($inputtedDescription)
+                            ){
+                                echo "Decscription must be at least 10 characters.";
+                             }
+                        else 
+                            {
 
-                $inputtedPlantName = $_POST['newPlantName']; 
-                $inputtedScientificName = $_POST['newPlantScientificName'];
-                $inputtedPlantFamily = $_POST['newPlantFamily'];
-                $inputtedImage = $_POST['newPlantImage'];
-                $inputtedDescription = $_POST['newPlantDescription'];
-                
-                if(strlen($inputtedPlantName)==0 ||
-                is_numeric($inputtedPlantName)) {
-                    echo "Please select use valid characters for the plant name.";
-                }
-                if(intval($inputtedPlantFamily)==0 ||
-                intval($inputtedPlantFamily < 4)) {
-                    echo "Please select a valid plant family.";
-                }
-                if(is_numeric($inputtedScientificName)) {
-                    echo "Please select use valid characters for the scientific name.";
-                }
-                if(strlen($inputtedImage)==0 || 
-                    filter_var($inputtedImage, FILTER_VALIDATE_URL) === FALSE) {
-                    echo "Please enter a valid image URL.";
-                }
-                if(strlen($inputtedDescription)==0 ||
-                strlen($inputtedDescription < 10) ||
-                is_numeric($inputtedDescription)) {
-                    echo "Decscription must be at least 10 characters.";
-                }
-                else {
+                                $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
+                                $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-                $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
-                $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                                $plantModel = new PlantModel($db);
 
-                $plantModel = new PlantModel($db);
-
-                
-                $success=$plantModel->addNewPlant($inputtedPlantName, $inputtedScientificName, $inputtedPlantFamily, $inputtedImage, $inputtedDescription);
-                }
-            }
+                                
+                                $success=$plantModel->addNewPlant($inputtedPlantName, 
+                                $inputtedScientificName, 
+                                $inputtedPlantFamily, 
+                                $inputtedImage,
+                                $inputtedDescription);
+                            }
+                    }
             ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -57,7 +65,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="addPlant.css">
+        <link rel="stylesheet" href="style.css">
 
         <title>Mr Fancy Plants</title>
     </head>
@@ -69,7 +77,7 @@
             </div>
         </header>
 
-        <a class="PLANTBUTTON" href="index.php">Back Home</a>
+        <a class="plantButton" href="index.php">Back Home</a>
         
         <form method="POST" class="add_plant">
 
@@ -110,28 +118,8 @@
                     }
                 ?>
             </div>
-
-            <!-- <div class="slider_wrapper">
-                <div class="slider_inner">
-                    <div class="slider_left">
-                    </div>
-                    <div class="slider_container">
-                        <div class=" slider_images">
-                            <div>
-                                <?php
-                                    echo PlantViewHelper::displayAllPlants($plants);
-                                ?>
-                            </div>
-                            <img src="#" />
-                            <img src="#" />
-                            <img src="#" />
-                            <img src="#" />
-                            <img src="#" /> -->
-                        </div>
-                    </div>
                     <div class="slider_right">
                     </div>
                 </div>
-            </div> -->
-    </body>
+            </div> 
 </html>

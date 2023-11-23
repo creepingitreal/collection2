@@ -68,7 +68,7 @@ class PlantModel
         return $plantObj;
     }
 
-    function addNewPlant(string $name, string $scientific_name, int $family_id, string $image, string $description) 
+    function addNewPlant(string $name, string $scientific_name, int $family_id, string $image, string $description): bool
     {   
         $query = $this->db->prepare(
             'INSERT INTO `plant` 
@@ -87,5 +87,5 @@ class PlantModel
 
         return $success;
         
-}
+    }
 }

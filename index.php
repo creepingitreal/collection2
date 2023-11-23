@@ -33,7 +33,7 @@
             </div>
         </header>
         
-        <a class="PLANTBUTTON" href="AddPlant.php">ADD NEW PLANT</a>
+        <a class="plantButton" href="AddPlant.php">ADD NEW PLANT</a>
 
         <div class="plants_display">
             <?php
