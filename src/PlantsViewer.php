@@ -16,7 +16,7 @@ class PlantViewHelper
             foreach ($plants as $plant) {
                 $output .= "<div class='all_plants'>";
                 $output .= "<h1>$plant->name</h1>";
-                $output .= "<p>$plant->family</p>";
+                $output .= "<p>$plant->scientificName</p>";
                 $output .= "<img src='$plant->image' />";
                 $output .= "<p class='description'>$plant->description</p>";
                 $output .= "</div>";
@@ -24,4 +24,24 @@ class PlantViewHelper
 
             return $output;
         }
+        public static function displayPlantDropDown(array $plants): string
+        {
+            if (empty($plants)) {
+                return "There are no plants just yet, please add some!";
+            } else {
+                $output = '';
+                foreach ($plants as $plant) {
+                    $output .= "<option value='{$plant->id}'>";
+                    $output .= "{$plant->name}";
+                    $output .= "</option>";
+                }
+                return $output;
+            }
+        }
+      
     }
+
+
+
+
+    

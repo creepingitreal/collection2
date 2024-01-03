@@ -3,7 +3,7 @@
 readonly class Plant
 {
     public string $name;
-    // public string $scientificName;
+    public string $scientificName;
     public string $image;
     public string $description;
     public string $family;
@@ -14,7 +14,7 @@ readonly class Plant
 
     public function __construct(
         string $name,
-        // string $scientificName,
+        string $scientificName,
         string $image,
         string $description,
         string $family,
@@ -25,7 +25,7 @@ readonly class Plant
     )    {
 
        $this->name = $name;
-    //    $this->scientificName = $scientificName;
+       $this->scientificName = $scientificName;
         $this->image = $image;
         $this->description = $description;
         $this->family = $family;

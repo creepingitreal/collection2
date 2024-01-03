@@ -14,13 +14,14 @@ class PlantModel
 
     public function getAllPlants()
     {
-        $query = $this->db->prepare("SELECT `plant`.`name`, 
+        $query = $this->db->prepare("SELECT `plant`.`name`, `plant`.`scientific_name`,
         `plant_family`.`name` AS `family`, 
         `plant`.`image`, 
         `plant`.`description`
             FROM `plant`
                 INNER JOIN `plant_family`
-                    ON `plant`.`family_id` = `plant_family`.`id`;");
+                    ON `plant`.`family_id` = `plant_family`.`id`
+                        WHERE `deleted` = 0;");
         $query->execute();
         $plants = $query->fetchAll();
         $plantObjs = [];
@@ -28,7 +29,7 @@ class PlantModel
         foreach ($plants as $plant) {
             $plantObjs[] = new Plant (
                         $plant['name'],
-                        // $plant['scientificName'],
+                        $plant['scientific_name'],
                         $plant['image'],
                         $plant['description'],
                         $plant['family'],
@@ -50,13 +51,14 @@ class PlantModel
         `plant`.`description`
             FROM `plant`
                 INNER JOIN `plant_family`
-                    ON `plant`.`family_id` = `plant_family`.`id`;");
+                    ON `plant`.`family_id` = `plant_family`.`id`
+                        WHERE `delete` = 0;");
         $query->bindParam(':id', $id);
         $query->execute();
         $plant = $query->fetch();
         $plantObj = new Plant (
             $plant['name'],
-            // $plant['scientificName'],
+            $plant['scientificName'],
             $plant['image'],
             $plant['description'],
             $plant['family'],
@@ -68,7 +70,7 @@ class PlantModel
         return $plantObj;
     }
 
-    function addNewPlant(string $name, string $scientific_name, int $family_id, string $image, string $description): bool
+    public function addNewPlant(string $name, string $scientific_name, int $family_id, string $image, string $description): bool
     {   
         $query = $this->db->prepare(
             'INSERT INTO `plant` 
@@ -88,4 +90,13 @@ class PlantModel
         return $success;
         
     }
+
+    public function deletePlant(int $id): bool
+    {
+        $query = $this->db->prepare("UPDATE `plant` SET `deleted`=1 WHERE `id`=$id ");
+        $success = $query->execute();
+
+        return $success;
+    }
 }
+
