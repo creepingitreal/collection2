@@ -31,8 +31,8 @@ class PlantViewHelper
             } else {
                 $output = '';
                 foreach ($plants as $plant) {
-                    $output .= "<option value='{$plant->id}'>";
-                    $output .= "{$plant->name}";
+                    $output .= "<option value='{$plant->family}'>";
+                    $output .= "{$plant->family}";                    
                     $output .= "</option>";
                 }
                 return $output;

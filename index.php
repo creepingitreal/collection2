@@ -4,10 +4,18 @@
 
     $db = new PDO('mysql:host=db; dbname=plants', 'root', 'password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    
 
     $plantModel = new PlantModel($db);
     $plants = $plantModel->getAllPlants();
-
+    $allPlantFamilies = $plantModel->getAllPlantFamilies();
+    
+    $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+    $familyFilter = isset($_GET['family-filter']) ? $_GET['family-filter'] : 'all';
+    
+    if (isset($_GET['apply-filters'])) {
+        $plants = $plantModel->getFilteredPlants($searchQuery, $familyFilter);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +42,39 @@
             <nav>
                 <a href="index.php" class="navButton">Home</a>
                 <a href="AddPlant.php" class="navButton">Add New Plant</a>
-                <a href="#" class="navButton">Remove a Plant</a>
+                <a href="DeletePlant.php" class="navButton">Remove a Plant</a>
             </nav>
+
+            <div class="search-filter">
+                <form action="index.php" method="GET">
+                    <label for="search">Search:</label>
+                    <input type="text" name="search" id="search" placeholder="Enter search term" value="<?php echo $searchQuery; ?>">
+
+                    <label for="family-filter">Filter by Family:</label>
+                    <select name="family-filter" id="family-filter">
+                        <option value="">All Families</option>
+                        <?php
+                        foreach ($allPlantFamilies as $family) {
+                            echo "<option value='{$family->id}'>{$family->name}</option>";
+                        }
+                        ?>
+                    </select>
+
+                    <button type="submit" name="apply-filters">Apply Filters</button>
+                    <a href="index.php" class="clear-filters">Clear Filters</a>
+                </form>
+            </div>
         </header>
+
         <div class="plants_display">
-            <?php
+        <?php
+            
+            if (isset($plants)) {
                 echo PlantViewHelper::displayAllPlants($plants);
-            ?>
+            } else {
+                echo "No plants to display."; // You can customize this message
+            }
+        ?>
         </div>
     </body>
 </html>

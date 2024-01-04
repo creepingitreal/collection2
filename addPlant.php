@@ -107,32 +107,6 @@
                     
                     <input type="submit" class="sumbitPlant"/>
                 </form>
-
-                <form class="deletePlant" method="POST">
-                    <select name="delete_plant">
-                        <option value="0">--Select Plant--</option>
-                        <?php
-                        require_once 'src/PlantsViewer.php';
-                        $plantViewHelper = new PlantViewHelper(); 
-                        echo $plantViewHelper->displayPlantDropDown($plants);
-                        ?>
-                    </select>
-                    <button type="submit" name="submit_delete">Delete Plant</button>
-                </form>
-
-                <?php
-                if (isset($_POST['submit_delete'])) {
-                    $selectedPlantId = $_POST['delete_plant'];
-                    $plantDelete = new PlantModel($db);
-                    $success = $plantDelete->deletePlant($selectedPlantId);
-                    if ($success) {
-                        echo "Plant successfully deleted!";
-                    } else {
-                        echo "Error deleting plant.";
-                    }
-                }
-                ?>
-
         </section>
                 <?php
                     if(isset($success)){
