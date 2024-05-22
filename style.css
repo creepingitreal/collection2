@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    padding-top: 5%;
+    padding-top: 4%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@ header h1, header p {
 }
 
 header h1 {
-    font-size: xx-large;
+    font-size: 50px;
     padding-bottom: 2.5%;
     border-bottom: solid 2px rgb(218, 238, 136);
 }
@@ -31,6 +31,24 @@ header p{
     padding-top: 2.5%;
     font-weight: 500;
     font-size: medium;
+}
+
+.plantButton {
+    font-weight: 600;
+    font-size: 20px;
+    background-color: pink;
+    border: solid 3px;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 20px 20px;
+    margin-left: 70%;
+    margin-top: 60%;
+    transition: .2s;
+}
+.plantButton:hover {
+    background-color: darkorchid;
+    color: yellow;
+
 }
 
 .individual_plant {
@@ -49,10 +67,7 @@ header p{
 .all_plants {
     background-color: rgb(193, 229, 206);
     width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10%;
+    margin: 10% auto;
     padding: 5%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -80,4 +95,69 @@ header p{
 .description {
     margin-top: 2%;
     font-weight: 600;
+}
+
+.add_plant {
+    margin: 3% auto;
+    display: grid;
+    gap: 3%;
+    align-content: space-evenly;
+    max-width: 50%;
+    background-color: rgb(193, 229, 206);
+    padding: 5% 3%;
+    border-radius: 4px;
+    border-bottom: solid 2px rgb(218, 238, 136);
+}
+
+
+.add_plant input {
+    border: none;
+    border-radius: 3px;
+    padding: 5px 0;
+}
+
+/* .add_plant {
+} */
+
+.add_plant .sumbitPlant{
+    margin-top: 3%;
+    max-width: 18%;
+    padding: 1% 2%;
+}
+
+.sumbit_success {
+    font-size: large;
+}
+
+.slider_wrapper {
+    width: 500px;
+    margin: auto;
+}
+
+.slider_inner {
+    display: flex;
+    width: 100%;   
+}
+
+.slider_left {
+    flex: 0 0 10%;
+}
+
+.slider_right {
+    flex: 0 0 10%;
+}
+
+.slider_images {
+    flex: 0 0 80%;
+    display: flex;
+    transform: translate(-400px);
+}
+
+.slider_images img {
+    flex: 0 0 440px;
+    width: 400px;
+}
+
+.slider_container {
+    overflow: hidden;
 }
