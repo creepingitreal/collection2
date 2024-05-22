@@ -33,9 +33,9 @@
                                 echo "Please enter a valid image URL.";
                             }
                         if(strlen($inputtedDescription)==0 ||
-                        strlen($inputtedDescription < 10) ||
+                        strlen($inputtedDescription) < 10 ||
                         is_numeric($inputtedDescription)
-                            ){
+                            ){  
                                 echo "Decscription must be at least 10 characters.";
                              }
                         else 
@@ -74,37 +74,40 @@
             <div class="logo">
                 <h1> Mr Fancy Plants </h1>
                 <p> Girl, pileas!</p>
-            </div>
+            </div>  
+
+            <nav>
+                <a href="index.php" class="navButton">Home</a>
+                <a href="AddPlant.php" class="navButton">Manage Plants</a>
+            </nav>
         </header>
+        <section class="managePlants">
+            <form method="POST" class="add_plant">
 
-        <a class="plantButton" href="index.php">Back Home</a>
-        
-        <form method="POST" class="add_plant">
+                    <label for="newPlant">Plant Name</label>
+                    <input type="text" name="newPlantName" />
 
-                <label for="newPlant">Plant Name</label>
-                <input type="text" name="newPlantName" />
+                    <label for="newPlantFamily">Select the family</label>
+                    <select name="newPlantFamily">
+                        <option value="0">--Plant Family--</option>
+                        <option value="4">Foliage Plants</option>
+                        <option value="1">Succlents and Cacti</option>
+                        <option value="3">Flowing Plants</option>
+                        <option value="2">Trailing or Hanging Plants</option>
+                    </select>
+                    
+                    <label for="newPlantScientificName">Scientific Name</label>
+                    <input type="string" name="newPlantScientificName" />
+                    
+                    <label for="newPlantImage">Image URL</label>
+                    <input type="url" name="newPlantImage" />
 
-                <label for="newPlantFamily">Select the family</label>
-                <select name="newPlantFamily">
-                    <option value="0">--Plant Family--</option>
-                    <option value="4">Foliage Plants</option>
-                    <option value="1">Succlents and Cacti</option>
-                    <option value="3">Flowing Plants</option>
-                    <option value="2">Trailing or Hanging Plants</option>
-                </select>
-                
-                <label for="newPlantScientificName">Scientific Name</label>
-                <input type="string" name="newPlantScientificName" />
-                
-                <label for="newPlantImage">Image URL</label>
-                <input type="url" name="newPlantImage" />
-
-                <label for="newPlantImage">Description</label>
-                <input type="textarea" name="newPlantDescription" />
-                
-                <input type="submit" class="sumbitPlant"/>
-            </form>
-              
+                    <label for="newPlantImage">Description</label>
+                    <textarea type="text" name="newPlantDescription"></textarea>
+                    
+                    <input type="submit" class="sumbitPlant"/>
+                </form>
+        </section>
                 <?php
                     if(isset($success)){
                         if($success) {
@@ -112,9 +115,7 @@
                             "<div class='submit_success'>";
                             "Your $inputtedPlantName was added to the plant collection";
                             "</div>";
-                        } else { 
-                            echo "Sacrebleu - t did not work! Please ensure you completed all the fields";
-                        }
+                        } 
                     }
                 ?>
             </div>
