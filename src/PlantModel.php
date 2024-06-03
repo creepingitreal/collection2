@@ -22,7 +22,7 @@ class PlantModel
                 INNER JOIN `plant_family`
                     ON `plant`.`family_id` = `plant_family`.`id`
                         WHERE `deleted` = 0;");
-        $query->execute();x
+        $query->execute();
         $plants = $query->fetchAll();
         $plantObjs = [];
 

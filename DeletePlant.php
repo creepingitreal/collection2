@@ -32,36 +32,41 @@
 
             <nav>
                 <a href="index.php" class="navButton">Home</a>
+                <a href="AddPlant.php" class="navButton">Add New Plant</a>
+                <a href="DeletePlant.php" class="navButton">Remove a Plant</a>
             </nav>
         </header>
-                <form class="deletePlant" method="POST">
-                    <h2>Delete a plant</h2>
-                    <label for="delete_plant">Choose which plant you want to remove</label> <br>
-                    <select name="delete_plant" id="delete_plant">
-                        <option value="0">--Select Plant--</option>
-                         <?php 
-                               require_once 'src/PlantsViewer.php';
-                               echo $plantViewHelper->displayPlantDropDown($plants);
-                            ?>
-                    </select><br>
-                    <button type="submit" name="submit_delete">Delete Plant</button>
-                    <?php
-                    require_once 'src/PlantModel.php';
-                    
-                        if (isset($_POST['submit_delete'])) {
-                            $selectedPlantId = $_POST['delete_plant'];
-                            $plantDelete = new PlantModel($db);
-                            $success = $plantDelete->deletePlant($selectedPlantId);
-                            if ($success) {
-                                echo "Plant successfully deleted!";
-                            } else {
-                                echo "Error deleting plant.";
-                            }
+            <form class="deletePlant" method="POST">
+                <h2>Delete a plant</h2>
+                <label for="delete_plant">Choose which plant you want to remove</label> <br>
+                <select name="delete_plant" id="delete_plant">
+                    <option value="0">--Select Plant--</option>
+                        <?php 
+                            require_once 'src/PlantsViewer.php';
+                            foreach ($plants as $plant) {
+                            echo "<option value='{$plant->$id}'>{$plant->name}</option>";
                         }
-                    ?>
-
-                </form>
-
-               
-        </section>
+                            echo $plantViewHelper->displayPlantDropDown($plants);
+                        ?>
+                </select>
+                
+                <input type="delete" class="sumbitPlant"/>
+                <!-- <button class="plantButton" type="submit" name="submit_delete">Delete Plant</button>
+                <button>HELOO</button> -->
+                <?php
+                require_once 'src/PlantModel.php';
+                
+                    if (isset($_POST['submit_delete'])) {
+                        $selectedPlantId = $_POST['delete_plant'];
+                        $plantDelete = new PlantModel($db);
+                        $success = $plantDelete->deletePlant($selectedPlantId);
+                        if ($success) {
+                            echo "Plant successfully deleted!";
+                        } else {
+                            echo "Error deleting plant.";
+                        }
+                    }
+                ?>
+            </form>
+    </body>
 </html>
